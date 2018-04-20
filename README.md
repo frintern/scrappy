@@ -1,2 +1,2 @@
-# scrapy
+# scrappy
 Slack bot...
