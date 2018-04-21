@@ -9,5 +9,5 @@ I work with feed-like chat interfaces (like Slack) to analyze and scrape links s
 I am currently being built and you can subscribe for notifications to know when I am fully built by selecting to `watch` this repo at the top right corner.
 
 Credits:
-@theo4u - developer and concept builder
-@osioke - concept design
+[@theo4u](https://github.com/theo4u) - developer and concept builder
+[@osioke](https://github.com/osioke) - concept design
