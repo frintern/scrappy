@@ -11,5 +11,4 @@ I am currently being built and you can subscribe for notifications to know when 
 Credits:
 
 [@theo4u](https://github.com/theo4u) - developer and concept builder
-
 [@osioke](https://github.com/osioke) - concept design
