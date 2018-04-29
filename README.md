@@ -9,8 +9,8 @@ I work with feed-like chat interfaces (like Slack) to analyze and scrape links s
 I am currently being built and you can subscribe for notifications to know when I am fully built by selecting to `watch` this repo at the top right corner.
 
 ## Available commands
-* `/scrappy` randomly gets a content from the configured channel
-* `/scrappy channel` to set a channel to watch for links to scrap 😉
+* `/scrappy` randomly gets a content based on the  configured channel
+* `/scrappy channel` to set a channel to watch for links to scrape 😉
 
 ## Road Map
 * [ ] be able to add multiple channel to scrape content from
