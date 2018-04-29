@@ -55,9 +55,13 @@ module.exports = {
   // any message sent to a channel should be handled
   events:  async (req, res) => {
     const {team_id, token, event} = req.body
-    const {type, text, channel}  = event
+    const {type, text, channel, hidden}  = event
 
     if(type !== 'message'){
+      return res.ok({})
+    }
+
+    if(hidden){ // means you ve shared this message twice on same channel
       return res.ok({})
     }
 

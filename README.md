@@ -18,7 +18,7 @@ I am currently being built and you can subscribe for notifications to know when 
 
 ## Development
 ```sh
-SLACK_TOKEN sails lift
+SLACK_TOKEN=xxx DB_USER='xx' DB_PASSWORD='trh' DB_URL='xxx' sails lift
 ```
 
 
