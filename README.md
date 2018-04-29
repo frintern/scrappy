@@ -16,6 +16,11 @@ I am currently being built and you can subscribe for notifications to know when 
 * [ ] be able to add multiple channel to scrape content from
 * [ ] specify a channel to get a random content from
 
+## Development
+```sh
+SLACK_TOKEN sails lift
+```
+
 
 Credits:
 

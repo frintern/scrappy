@@ -8,13 +8,16 @@
 module.exports = {
   attributes: {
     link: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
     team_id: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
-    team_domain: {
-      type: 'string'
+    channel: {
+      type: 'string',
+      required: true
     }
   }
 }

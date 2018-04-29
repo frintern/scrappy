@@ -1,3 +1,6 @@
+const rp = require('request-promise')
+const getUrls = require('get-urls')
+
 /**
  * SlackController
  *
@@ -27,6 +30,13 @@ const createOrUpdateClient = ({team_id, ...rest}) => {
   })
 }
 
+const getChannelInfo = (channel, token) => rp({
+  uri:'https://slack.com/api/channels.info',
+  qs: {
+    token,
+    channel
+  }})
+
 module.exports = {
   scrappy: async (req, res) => {
     const { text, team_id, team_domain, ...rest } = req.body;
@@ -40,5 +50,35 @@ module.exports = {
 
     console.log('you called me', req.body, action)
     res.ok('done')
+  },
+
+  // any message sent to a channel should be handled
+  events:  async (req, res) => {
+    const {team_id, token, event} = req.body
+    const {type, text, channel}  = event
+
+    if(type !== 'message'){
+      return res.ok({})
+    }
+
+    // get the channel name from the channel id
+    const {channel:{name}} = JSON.parse(await getChannelInfo(channel, process.env.SLACK_TOKEN))
+
+    // check if the channel is the configured channel for scrapper
+    const client = await Client.findOne({team_id})
+
+    if(client.channel !== name){
+      return res.ok({})
+    }
+
+    // use the name to save the link now
+    const urls = getUrls(text).values()
+
+    for(let url of urls){
+      await Link.create({link: url, team_id, channel: name})
+    }
+    res.ok({}) // must return a challenge
   }
+
+
 }
