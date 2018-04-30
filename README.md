@@ -18,7 +18,7 @@ I am currently being built and you can subscribe for notifications to know when 
 
 ## Development
 ```sh
-SLACK_TOKEN=xxx MONGO_DB_USER='xx' MONGO_DB_PASSWORD='trh' MONGO_DB_URL='xxx' sails lift
+SLACK_TOKEN=xxxx MONGO_DB_USER=xxxx MONGO_DB_PASSWORD=xxxx MONGO_DB_URL=xxxx sails lift
 ```
 
 
