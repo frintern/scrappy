@@ -17,6 +17,10 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+   '*': false,
+  SlackController: {
+    events: true,
+    scrappy: true
+  }
 
 };

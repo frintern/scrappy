@@ -22,9 +22,9 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  '/': {
-    view: 'pages/homepage'
-  },
+  //  '/': {
+  //  view: 'pages/homepage'
+  // },
 
   /***************************************************************************
    *                                                                          *
@@ -41,8 +41,20 @@ module.exports.routes = {
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
 
-  'post /slack/scrappy': 'SlackController.scrappy',
-  'post /slack/events': 'SlackController.events'
+  'post /slack/scrappy': {
+    controller: 'SlackController',
+    action: 'scrappy',
+    cors: {
+      allowOrigins: ['https://slack.com']
+    }
+  },
+  'post /slack/events': {
+    controller: 'SlackController',
+    action: 'events',
+    cors: {
+      allowOrigins: ['https://slack.com']
+    }
+  }
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
