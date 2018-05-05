@@ -37,7 +37,27 @@ const getChannelInfo = (channel, token) => rp({
     channel
   }})
 
+/**
+ * Get a random link using mongoDB's $sample: https://docs.mongodb.com/manual/reference/operator/aggregation/sample/
+ * @param team_id
+ * @return Promise.resolve(Link) or undefined if no link
+ */
+const getRandomLink = team_id => {
+  return new Promise((resolve, reject) => {
+    const db = Link.getDatastore().manager
+    const rawCollection = db.collection(Link.tableName)
+
+    rawCollection.aggregate([
+      {'$match': {team_id}},
+      {'$sample': {size: 1}}
+    ], (err, data)=>{
+      err ? reject (err) : resolve(data[0])
+    })
+  })
+}
+
 module.exports = {
+  // Slack > Slash Commands
   scrappy: async (req, res) => {
     const { text, team_id, team_domain, ...rest } = req.body;
 
@@ -46,14 +66,19 @@ module.exports = {
       return res.ok(`watching *${text}* channel ✌ `)
     }
 
-    // if no text or channel name was pass accross we just randomly throw something out
+    // if no text or channel name was pass accross we just randomly throw something out to caller
+    const link = await getRandomLink(team_id)
 
-    console.log('you called me', req.body, action)
-    res.ok('done')
+    if(!link){
+      return res.ok("No links found. Are you sure you've assigned me to a channel to watch  `/scrappy [channel name]` ")
+    }
+
+    res.ok(link.link)
   },
 
-  // any message sent to a channel should be handled
+  // any message sent to a channel should be handled , Slack > Event Subscription
   events:  async (req, res) => {
+
     const {team_id, token, event} = req.body
     const {type, text, channel, hidden}  = event
 
